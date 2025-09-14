@@ -575,9 +575,10 @@ Window_Status.prototype.refresh = function () {
 		// this.drawText(nexp, Moghunter.scStatus_NExpX, Moghunter.scStatus_NExpY,100,"center");	
 		this.contents.fontSize = 22;
 		this.drawText(this._actor.hp + " / " + this._actor.mhp, Moghunter.scStatus_HPNumberX, Moghunter.scStatus_HPNumberY, 100, "right");
-		this.drawText(this._actor.mp + " / " + this._actor.mmp, Moghunter.scStatus_MPNumberX, Moghunter.scStatus_MPNumberY, 100, "right");
-		this.drawText(this._actor.tp, Moghunter.scStatus_TPNumberX, Moghunter.scStatus_TPNumberY, 100, "right");
-		this.drawText(this._actor.loneliness() + " / " + this._actor.maxLoneliness(), 300, 340, 100, "right");
+		//this.drawText(this._actor.mp + " / " + this._actor.mmp, Moghunter.scStatus_MPNumberX, Moghunter.scStatus_MPNumberY, 100, "right");
+		//this.drawText(this._actor.tp, Moghunter.scStatus_TPNumberX, Moghunter.scStatus_TPNumberY, 100, "right");
+		this.drawText(this._actor.loneliness() + " / " + this._actor.maxLoneliness(), 85, 211, 100, "right");
+		this.drawText(this._actor.bond() + " / " + this._actor.maxBond(), 85, 267, 100, "right");
 		// this.drawText(this._actor.atk, Moghunter.scStatus_ATKNumberX, Moghunter.scStatus_ATKNumberY,100,"right");
 		// this.drawText(this._actor.mat, Moghunter.scStatus_MATNumberX, Moghunter.scStatus_MATNumberY,100,"right");
 		// this.drawText(this._actor.agi, Moghunter.scStatus_AGINumberX, Moghunter.scStatus_AGINumberY,100,"right");
@@ -651,7 +652,7 @@ MetersStatusM.prototype.createMeters = function () {
 // * update Meters
 //==============================
 MetersStatusM.prototype.updateMeters = function () {
-	for (var i = 0; i < 3; i++) {
+	for (var i = 0; i < 4; i++) {
 		var par1 = this._actor.hp;
 		var par2 = this._actor.mhp;
 		if (i === 0) {
@@ -659,12 +660,13 @@ MetersStatusM.prototype.updateMeters = function () {
 			var y = Moghunter.scStatus_MeterHPY;
 			par1 = this._actor.hp;
 			par2 = this._actor.mhp;
-		} else if (i === 1) {
-			var x = Moghunter.scStatus_MeterMPX;
-			var y = Moghunter.scStatus_MeterMPY;
-			par1 = this._actor.mp;
-			par2 = this._actor.mmp;
 		}
+		// else if (i === 1) {
+		//	var x = Moghunter.scStatus_MeterMPX;
+		//	var y = Moghunter.scStatus_MeterMPY;
+		//	par1 = this._actor.mp;
+		//	par2 = this._actor.mmp;
+		//}
 		//  else if (i === 2) {
 		// 	var x = Moghunter.scStatus_MeterTPX;
 		// 	var y = Moghunter.scStatus_MeterTPY;
@@ -702,10 +704,16 @@ MetersStatusM.prototype.updateMeters = function () {
 		// 	par2 = this._actor.paramMax();
 		// }
 		 else if (i === 2) {
-			var x = 500; // ← 你自定义的位置（X坐标）
-			var y = 370; // ← Y坐标（建议放在原来LUK以下）
+			var x = 45; // ← 你自定义的位置（X坐标）
+			var y = 266; // ← Y坐标（建议放在原来LUK以下）
 			par1 = this._actor.loneliness();
 			par2 = this._actor.maxLoneliness();
+		}
+		 else if (i === 3) {
+			var x = 45; // ← 你自定义的位置（X坐标）
+			var y = 322; // ← Y坐标（建议放在原来LUK以下）
+			par1 = this._actor.bond();
+			par2 = this._actor.maxBond();
 		};
 		this._meters[i].x = x;
 		this._meters[i].y = y;
